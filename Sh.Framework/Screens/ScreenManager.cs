@@ -7,15 +7,15 @@ namespace Sh.Framework.Screens
     public class ScreenManager
     {
         private static ScreenManager instance;
-        public Vector2 Dimensions { private set; get; }
+        //public Vector2 Dimensions;
         public ContentManager content { private set; get; }
         public Game game1;
+        public GraphicsDeviceManager g;
 
         public Screen currentscreen;
 
         private ScreenManager()
         {
-            Dimensions = new Vector2(1366, 768);
         }
 
         public static ScreenManager Instance

@@ -21,10 +21,10 @@ namespace Sh.Framework.Graphics.UI
 
         public string label;
 
-        public Color buttonColorDefault;
-        public Color buttonColorHover;
-        public Color buttonColorPressed;
-        public Color labelColor;
+        public Color buttonColorDefault = Color.White;
+        public Color buttonColorHover = Color.Gray;
+        public Color buttonColorPressed = Color.DarkGray;
+        public Color labelColor = Color.Black;
 
         public bool focused;
         //don't forget to set the rect value as this class inherits from clickable object
@@ -80,9 +80,20 @@ namespace Sh.Framework.Graphics.UI
 
         public override void Draw(SpriteBatch batch)
         {
+            /*
             batch.Draw(buttonMiddle, new Rectangle (rect.Left + buttonLeft.Width, rect.Y, rect.Width - (buttonRight.Width + buttonLeft.Width), rect.Height), buttonColor);
             batch.Draw(buttonLeft, new Rectangle(rect.Left, rect.Y, buttonLeft.Width, rect.Height), buttonColor);
             batch.Draw(buttonRight, new Rectangle(rect.Right - buttonRight.Width, rect.Y, buttonLeft.Width, rect.Height), buttonColor);
+            */
+
+            new pane
+            {
+                color = buttonColor,
+                rect = this.rect,
+                buttonLeft = this.buttonLeft,
+                buttonMiddle = this.buttonMiddle,
+                buttonRight = this.buttonRight
+            }.Draw(batch);
 
             batch.DrawString(labelFont, label, new Vector2(
                 rect.X + rect.Width / 2 - labelFont.MeasureString (label).X / 2,

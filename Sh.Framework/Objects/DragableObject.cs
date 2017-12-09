@@ -58,7 +58,6 @@ namespace Sh.Framework.Objects
                 {
                     switch (lockOn)
                     {
-
                         case AxisLockOn.X:
                             position.X = mouse.Position.X - texture.Width / 2;
                             break;

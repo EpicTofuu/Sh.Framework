@@ -17,6 +17,7 @@ namespace Tests.testcases.ConsoleTests
         Button errorConsole;
         Button fatalConsole;
         Button wipeConsole;
+        Button writeConsole;
 
         DebugConsole dbconsole;
 
@@ -36,7 +37,7 @@ namespace Tests.testcases.ConsoleTests
 
             Texture2D pixel = game.Content.Load<Texture2D>(@"pixel");
 
-            dbconsole = new DebugConsole(pixel, useFont, new Rectangle (1366 - 800, 750, 800, 400),game);
+            dbconsole = new DebugConsole(pixel, useFont, new Rectangle (1366 - 800, 750, 800, 400), game);
 
             commentConsole = new Button
             {
@@ -113,6 +114,21 @@ namespace Tests.testcases.ConsoleTests
                 focused = true
             }; wipeConsole.LoadContent();
 
+            writeConsole = new Button
+            {
+                buttonLeft = CbuttonLeft,
+                buttonRight = CbuttonRight,
+                buttonMiddle = CbuttonMiddle,
+                buttonColorDefault = Color.White,
+                buttonColorHover = Color.Gray,
+                buttonColorPressed = Color.DarkGray,
+                labelFont = useFont,
+                label = "Write console to documents folder",
+                labelColor = Color.White,
+                rect = new Rectangle(180, 480, 300, 50),
+                focused = true
+            }; commentConsole.LoadContent();
+
             base.LoadContent();
         }
 
@@ -123,6 +139,7 @@ namespace Tests.testcases.ConsoleTests
             errorConsole.Update();
             fatalConsole.Update();
             wipeConsole.Update();
+            writeConsole.Update();
 
             if (commentConsole.pressed)
             {
@@ -154,6 +171,12 @@ namespace Tests.testcases.ConsoleTests
                 wipeConsole.pressed = false;
             }
 
+            if (writeConsole.pressed)
+            {
+                dbconsole.ToFile(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ShFramework console.txt");
+                writeConsole.pressed = false;
+            }
+
             base.Update(gametime);
         }
 
@@ -164,6 +187,7 @@ namespace Tests.testcases.ConsoleTests
             errorConsole.Draw(spritebatch);
             fatalConsole.Draw(spritebatch);
             wipeConsole.Draw(spritebatch);
+            writeConsole.Draw(spritebatch);
 
             dbconsole.Draw(spritebatch);
             base.Draw(spritebatch);

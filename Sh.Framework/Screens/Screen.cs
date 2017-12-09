@@ -13,7 +13,6 @@ namespace Sh.Framework.Screens
 
         public Screen()
         {
-            
         }
 
         public virtual void Initialize()

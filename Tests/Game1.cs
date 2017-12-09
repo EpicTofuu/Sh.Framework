@@ -19,8 +19,10 @@ namespace Tests
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1366;
+            graphics.PreferredBackBufferHeight = 768;
 
-            //the game is borderline capable of handling irregular aspect ratios and resolutions, but just don't.
+            //the interface is borderline capable of handling irregular aspect ratios and resolutions, but just don't.
             //Window.AllowUserResizing = true;
         }
 
@@ -32,8 +34,6 @@ namespace Tests
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
 
             ScreenManager.Instance.currentscreen = new testcases.about.aboutTestCase(this);

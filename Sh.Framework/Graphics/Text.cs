@@ -6,7 +6,7 @@ namespace Sh.Framework.Graphics
     public class Text
     {
         public string text;
-        public Vector2 position;
+        public Vector2 position = Vector2.Zero;
         public Color color = Color.White;
         public string font;
         public Game game;
@@ -18,13 +18,16 @@ namespace Sh.Framework.Graphics
         /// </summary>
         public Text()
         {
+            /*
+            if (fontDest != null)
+            else
+                useFont = font;*/
 
         }
 
         public virtual void LoadContent()
         {
-            if (font != null)
-                useFont = game?.Content.Load<SpriteFont>(font);
+            useFont = game?.Content.Load<SpriteFont>(font);
         }
 
         public virtual void Draw(SpriteBatch batch)

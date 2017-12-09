@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Tests.testcases.about;
+using System.Collections.Generic;
 
 namespace Tests.Head
 {
@@ -34,7 +35,7 @@ namespace Tests.Head
             MouseState mouse = Mouse.GetState();
             batch.Draw(pixel, new Rectangle(0, 0, 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height), Color.DarkGray);
 
-            for (int i = 0; i < 9; i++)                                 //should be equal to count of all testcases
+            for (int i = 0; i < 11; i++)                                 //should be equal to count of all testcases
             {
                 buttonsize = new Rectangle(4, 55 * i + 45, 150, 50);
                 batch.Draw(pixel, buttonsize, Color.DarkSlateGray);
@@ -128,6 +129,26 @@ namespace Tests.Head
                         if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
                         {
                             ScreenManager.Instance.currentscreen = new testcases.RenderTextTests.RenderTextTestCase(game);
+                            ScreenManager.Instance.reloadscreen();
+                        }
+                        break;
+
+                    //FileIO
+                    case 9:
+                        batch.DrawString(font, "File IO", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
+                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            ScreenManager.Instance.currentscreen = new testcases.IOTests.IOTestCase(game);
+                            ScreenManager.Instance.reloadscreen();
+                        }
+                        break;
+
+                    //Strokes
+                    case 10:
+                        batch.DrawString(font, "KeyStrokes", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
+                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            ScreenManager.Instance.currentscreen = new testcases.KeyStrokeTests.KeyStrokeTestCase(game);
                             ScreenManager.Instance.reloadscreen();
                         }
                         break;

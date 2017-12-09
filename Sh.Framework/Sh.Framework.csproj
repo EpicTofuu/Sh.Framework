@@ -46,12 +46,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Debug\DebugConsole.cs" />
+    <Compile Include="FileIO\tiled.cs" />
+    <Compile Include="FileIO\txt.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Text.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
     <Compile Include="Graphics\UI\Checkbox.cs" />
+    <Compile Include="Graphics\UI\pane.cs" />
+    <Compile Include="Graphics\UI\Popup.cs" />
     <Compile Include="Graphics\utils.cs" />
-    <Compile Include="InputOutput\xml.cs" />
+    <Compile Include="FileIO\xml.cs" />
+    <Compile Include="Input\Stroke.cs" />
     <Compile Include="Objects\ClickableObject.cs" />
     <Compile Include="Objects\DragableObject.cs" />
     <Compile Include="Objects\GameObject.cs" />
