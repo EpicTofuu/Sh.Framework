@@ -2,7 +2,7 @@
 
 namespace Sh.Framework.Input
 {
-    public static class Stroke
+    public static class KeyboardStroke
     {
         /// <summary>
         /// Detect if the key has been pressed

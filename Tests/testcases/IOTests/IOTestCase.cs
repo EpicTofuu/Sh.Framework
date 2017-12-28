@@ -23,6 +23,7 @@ namespace Tests.testcases.IOTests
 
         public IOTestCase(Game other) : base(other)
         {
+            testcasename = "IOTests";
             game = other;
 
             Texture2D pixel = game.Content.Load<Texture2D>(@"pixel");

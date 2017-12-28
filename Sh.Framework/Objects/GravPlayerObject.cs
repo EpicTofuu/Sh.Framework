@@ -29,11 +29,14 @@ namespace Sh.Framework.Objects
         
         float hsp, vsp;
 
+        float rGravity;
+
         public GravPlayerObject(Game othergame) : base(othergame)
         {
             solid = true;
             game = othergame;
             vsp = 0;
+            rGravity = gravity;
         }
 
         public override void LoadContent()
@@ -83,7 +86,7 @@ namespace Sh.Framework.Objects
 
                 Rectangle horCol = new Rectangle((int)(position.X + hsp), (int)position.Y, (int)texture.Width, (int)texture.Height);
                 Rectangle verCol = new Rectangle((int)position.X, (int)(position.Y + vsp), (int)texture.Width, (int)texture.Height);
-
+                
                 //horizontal collision
                 if (collision.withGameObject(horCol, other))
                 {
@@ -102,21 +105,14 @@ namespace Sh.Framework.Objects
                 //vertical collision
                 if (collision.withGameObject(verCol, other))
                 {
-                    Hcoll = true;
-
                     while (!collision.withGameObject(new Rectangle((int)position.X, (int)(position.Y + Math.Sign(vsp)), (int)texture.Width, (int)texture.Height), other))
                         position.Y += Math.Sign(vsp);
 
                     vsp = 0;
                 }
-                else
-                {
-                    Hcoll = false;
-                }
             }
-
-            //i = solids;
-            position = new Vector2(position.X += hsp, position.Y += vsp);
+            
+            position = new Vector2(position.X + hsp, position.Y + vsp);
             Dhsp = hsp;
             Dvsp = vsp;
         }

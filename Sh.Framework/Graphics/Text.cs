@@ -11,7 +11,7 @@ namespace Sh.Framework.Graphics
         public string font;
         public Game game;
 
-        private SpriteFont useFont;
+        public SpriteFont useFont;
 
         /// <summary>
         /// render text with a quick to use type

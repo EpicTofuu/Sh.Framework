@@ -9,7 +9,7 @@ namespace Tests.Head
         private header header;
         private buttonpane buttonpane;
 
-        protected string testcasename;
+        public string testcasename;
 
         public Texture2D pixel;
         public SpriteFont font;

@@ -21,6 +21,7 @@ namespace Tests
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1366;
             graphics.PreferredBackBufferHeight = 768;
+            screen.dim = new Vector2(screen.getWidth(), screen.getHeight());
 
             //the interface is borderline capable of handling irregular aspect ratios and resolutions, but just don't.
             //Window.AllowUserResizing = true;
@@ -81,6 +82,7 @@ namespace Tests
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            screen.dim = new Vector2(screen.getWidth(), screen.getHeight());
 
             // TODO: Add your update logic here
             ScreenManager.Instance.Update(gameTime);

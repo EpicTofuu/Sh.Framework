@@ -6,6 +6,9 @@ using Sh.Framework.Physics.Collisions;
 
 namespace Sh.Framework.Graphics.UI
 {
+    /// <summary>
+    /// clickable panes that can be hovered over for maximum enjoyment
+    /// </summary>
     public class Button : ClickableObject
     {
         //fillable variables c
@@ -80,13 +83,8 @@ namespace Sh.Framework.Graphics.UI
 
         public override void Draw(SpriteBatch batch)
         {
-            /*
-            batch.Draw(buttonMiddle, new Rectangle (rect.Left + buttonLeft.Width, rect.Y, rect.Width - (buttonRight.Width + buttonLeft.Width), rect.Height), buttonColor);
-            batch.Draw(buttonLeft, new Rectangle(rect.Left, rect.Y, buttonLeft.Width, rect.Height), buttonColor);
-            batch.Draw(buttonRight, new Rectangle(rect.Right - buttonRight.Width, rect.Y, buttonLeft.Width, rect.Height), buttonColor);
-            */
-
-            new pane
+            //might take up excess memory (but in all honesty who actually cares, it's a button ffs)
+            new Pane
             {
                 color = buttonColor,
                 rect = this.rect,

@@ -30,6 +30,7 @@ namespace Tests.testcases.KeyStrokeTests
             game = Game;
             oldState = Keyboard.GetState();
             keypressed = 0;
+            testcasename = "KeyStrokes";
         }
 
         public override void LoadContent()
@@ -61,12 +62,12 @@ namespace Tests.testcases.KeyStrokeTests
         {
             newState = Keyboard.GetState();
 
-            if (Stroke.KeyDown(oldState, newState, Keys.Space))
+            if (KeyboardStroke.KeyDown(oldState, newState, Keys.Space))
             {
                 keypressed++;
             }
 
-            if (Stroke.KeyUp(oldState, newState, Keys.Enter))
+            if (KeyboardStroke.KeyUp(oldState, newState, Keys.Enter))
             {
                 keyreleased++;
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Sh.Framework.FileIO;
 using Sh.Framework.Debug;
+using System.Diagnostics;
 
 namespace Tests.testcases.IOTests
 {
@@ -20,6 +21,8 @@ namespace Tests.testcases.IOTests
             {
                 throw new Exception("file was not written");
             }
+
+            Process.Start("explorer.exe", @"C:\Users\%USERNAME%\Documents");
 
             console.write("wrote file", urgency.comment);
         }

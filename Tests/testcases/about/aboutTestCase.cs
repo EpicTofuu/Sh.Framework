@@ -5,19 +5,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Tests.testcases.about
 {
-    public class aboutTestCase : Screen
+    public class aboutTestCase : testcase
     {
         private buttonpane buttonpane;
 
         private header header;
 
-        private Texture2D pixel;
-        private SpriteFont font;
-
         private Game game;
 
-        public aboutTestCase(Game othergame)
+        public aboutTestCase(Game othergame) : base(othergame)
         {
+            testcasename = "about";
             game = othergame;
         }
 
@@ -38,9 +36,10 @@ namespace Tests.testcases.about
 
             spritebatch.DrawString(font, "About \n\n" +
                 "Welcome to the Sh.Framework testing interface, here you can test all the features Sh.Framework has to offer \n" +
-                "Use the left bar to navigate, the top bar tells you which testcase is currently active. \n" +
+                "Use the left bar to navigate, the top bar tells you which testcase is currently active. \n\n" +
                 "Grey text indicate stable features that are fully functional, Yellow text indicate incomplete features that will be properly functioning in the near future, \n" +
-                "also, good luck with the background in the other testcases xd", new Vector2(180, 60), Color.White);
+                "More testcases can be found by scrolling (it's very buggy and it doesn't work very well for the time being"
+                , new Vector2(180, 60), Color.White);
 
             buttonpane.Draw(spritebatch);
             header.Draw(spritebatch);

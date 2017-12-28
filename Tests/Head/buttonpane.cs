@@ -1,11 +1,11 @@
-﻿using Sh.Framework.Screens;
-using Sh.Framework.Objects;
-using Sh.Framework.Physics.Collisions;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Tests.testcases.about;
-using System.Collections.Generic;
+using Sh.Framework.Screens;
+using Sh.Framework.Objects;
+using Sh.Framework.Physics.Collisions;
+using Sh.Framework.Graphics.UI.Scrolling;
 
 namespace Tests.Head
 {
@@ -18,11 +18,32 @@ namespace Tests.Head
 
         private Game game;
 
+        List<testcase> testcases = new List<testcase>();
+
+        ScrollManager scrollmanager;
+
         public buttonpane(Texture2D otherpixel, SpriteFont otherfont, Game othergame)
         {
+            scrollmanager = new ScrollManager();
+            scrollmanager.container = new Rectangle(0, 0, 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
             font = otherfont;
             pixel = otherpixel;
             game = othergame;
+
+            testcases.Add(new testcases.about.aboutTestCase(game));
+            testcases.Add(new testcases.ButtonTests.ButtonTestCase(game));
+            testcases.Add(new testcases.CheckboxTests.CheckboxTestCase(game));
+            testcases.Add(new testcases.ConsoleTests.ConsoleTestCase(game));
+            testcases.Add(new testcases.DragableObjectTests.DragableObjectTestCase(game));
+            testcases.Add(new testcases.GravPlayerObjectTests.GravPlayerObjectTestCase(game));
+            testcases.Add(new testcases.IOTests.IOTestCase(game));
+            testcases.Add(new testcases.KeyStrokeTests.KeyStrokeTestCase(game));
+            testcases.Add(new MovementTests.MovementTestCase(game));
+            testcases.Add(new testcases.RenderTextTests.RenderTextTestCase(game));
+            testcases.Add(new testcases.SplashScreenTests.SplashScreenTestCase(game));
+            testcases.Add(new testcases.TooltipsTests.TooltipsTestCase(game));
+            testcases.Add(new testcases.TextboxTests.TextboxTestCase(game));
         }
 
         public override void LoadContent()
@@ -32,128 +53,28 @@ namespace Tests.Head
 
         public override void Draw(SpriteBatch batch)
         {
-            MouseState mouse = Mouse.GetState();
             batch.Draw(pixel, new Rectangle(0, 0, 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height), Color.DarkGray);
 
-            for (int i = 0; i < 11; i++)                                 //should be equal to count of all testcases
+            int i = 0;
+
+            foreach (testcase t in testcases)
             {
-                buttonsize = new Rectangle(4, 55 * i + 45, 150, 50);
+                Vector2 position = new Vector2(4, 55 * i + 45 + scrollmanager.offset.Y);
+                buttonsize = new Rectangle((int)position.X, (int)position.Y, 150, 50);
                 batch.Draw(pixel, buttonsize, Color.DarkSlateGray);
 
-                //efficiency!
-                switch (i)                                              //for each of the buttons, run the testcase
+                batch.DrawString(font, t.testcasename, new Vector2(buttonsize.X, buttonsize.Y), Color.White);
+
+                if (MouseTouching.RectWithIn(buttonsize) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                    //about
-                    case 0:
-                        batch.DrawString(font, "about", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new aboutTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //movement
-                    case 1:
-                        batch.DrawString(font, "movement", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new MovementTests.MovementTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //splash screens
-                    case 2:
-                        batch.DrawString(font, "Splash screen", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.SplashScreenTests.SplashScreenTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //buttons
-                    case 3:
-                        batch.DrawString(font, "buttons", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.ButtonTests.ButtonTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //checkboxes
-                    case 4:
-                        batch.DrawString(font, "checkboxes", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.CheckboxTests.CheckboxTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //GravPlayerObject
-                    case 5:
-                        batch.DrawString(font, "GravPlayerObject", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.GravPlayerObjectTests.GravPlayerObjectTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //DragableObject
-                    case 6:
-                        batch.DrawString(font, "DragableObject", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.DragableObjectTests.DragableObjectTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //DebugConsole
-                    case 7:
-                        batch.DrawString(font, "DebugConsole", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.ConsoleTests.ConsoleTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //RenderText
-                    case 8:
-                        batch.DrawString(font, "RenderText", new Vector2(buttonsize.X, buttonsize.Y), Color.Yellow);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.RenderTextTests.RenderTextTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //FileIO
-                    case 9:
-                        batch.DrawString(font, "File IO", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.IOTests.IOTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
-
-                    //Strokes
-                    case 10:
-                        batch.DrawString(font, "KeyStrokes", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
-                        if (MouseTouching.Rect(mouse, buttonsize) && mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            ScreenManager.Instance.currentscreen = new testcases.KeyStrokeTests.KeyStrokeTestCase(game);
-                            ScreenManager.Instance.reloadscreen();
-                        }
-                        break;
+                    ScreenManager.Instance.currentscreen = t;
+                    ScreenManager.Instance.reloadscreen();
                 }
+
+                i++;
             }
+
+            scrollmanager.Update();
 
             base.Draw(batch);
         }

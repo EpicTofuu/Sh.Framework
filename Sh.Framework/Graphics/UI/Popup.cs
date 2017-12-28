@@ -6,6 +6,9 @@ using Sh.Framework.Objects;
 
 namespace Sh.Framework.Graphics.UI
 {
+    /// <summary>
+    /// a pane that eases into the screen's view with some message
+    /// </summary>
     public class Popup
     {
         public Game game;
@@ -71,7 +74,7 @@ namespace Sh.Framework.Graphics.UI
 
         public void Draw(SpriteBatch batch)
         {
-            new pane
+            new Pane
             {
                 buttonLeft = paneLeft,
                 buttonRight = paneRight,

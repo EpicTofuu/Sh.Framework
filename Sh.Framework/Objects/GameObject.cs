@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sh.Framework.Graphics;
 
 namespace Sh.Framework.Objects
 {
@@ -19,8 +18,6 @@ namespace Sh.Framework.Objects
 
         protected Game game0;
         public Rectangle hitbox;
-
-        protected utils.anchor origin;
 
         public GameObject(Game othergame)
         {
