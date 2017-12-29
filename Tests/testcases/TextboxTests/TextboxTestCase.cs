@@ -28,7 +28,6 @@ namespace Tests.testcases.TextboxTests
                     rect = new Rectangle(200, 200, 500, 50)
                 },
                 dummyText = "Enter...",
-                characterRange = Textbox.CharacterRange.ASCII,
                 font = game.Content.Load<SpriteFont>("font"),
                 paddingX = 10,
                 game = game,
