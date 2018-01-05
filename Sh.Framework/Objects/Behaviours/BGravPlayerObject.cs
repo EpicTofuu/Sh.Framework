@@ -1,40 +1,45 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sh.Framework.Physics.Collisions;
 using System;
 using System.Collections.Generic;
 
-namespace Sh.Framework.Objects
+namespace Sh.Framework.Objects.Behaviours
 {
-    public class GravPlayerObject : GameObject
+    /// <summary>
+    /// GravPlayerObject as an instiable type rather than an inheritable object
+    /// </summary>
+    public class BGravPlayerObject : GenericObject
     {
-        //to assign
-        protected Keys jump;
-        protected Keys moveLeft;
-        protected Keys moveRight;
-        protected float speed = 10;
-        protected float jumpspeed = 20;
-        protected float gravity = 2;
+        public Vector2 position;
+        public Texture2D texture;
 
-        protected List<GameObject> solids = new List<GameObject>();
-        private Game game;
+        //to assign
+        public Keys jump;
+        public Keys moveLeft;
+        public Keys moveRight;
+        public float speed = 10;
+        public float jumpspeed = 20;
+        public float gravity = 2;
+
+        public List<GameObject> solids = new List<GameObject>();
+        public Game game;
 
         //debug variables
 
-        public float Dhsp;
-        public float Dvsp;
+        private float Dhsp;
+        private float Dvsp;
 
-        public bool Hcoll;
-        public bool Vcoll;
+        private bool Hcoll;
+        private bool Vcoll;
 
-        float hsp, vsp;
+        public float hsp, vsp;
 
         float rGravity;
 
-        public GravPlayerObject(Game othergame) : base(othergame)
+        public BGravPlayerObject()
         {
-            solid = true;
-            game = othergame;
             vsp = 0;
             rGravity = gravity;
         }
@@ -85,7 +90,7 @@ namespace Sh.Framework.Objects
 
                 Rectangle horCol = new Rectangle((int)(position.X + hsp), (int)position.Y, (int)texture.Width, (int)texture.Height);
                 Rectangle verCol = new Rectangle((int)position.X, (int)(position.Y + vsp), (int)texture.Width, (int)texture.Height);
-                
+
                 //horizontal collision
                 if (collision.withGameObject(horCol, other))
                 {
@@ -110,8 +115,9 @@ namespace Sh.Framework.Objects
                     vsp = 0;
                 }
             }
-            
+
             position = new Vector2(position.X + hsp, position.Y + vsp);
+
             Dhsp = hsp;
             Dvsp = vsp;
         }

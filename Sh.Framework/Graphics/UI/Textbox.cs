@@ -120,7 +120,6 @@ namespace Sh.Framework.Graphics.UI
 
             k_oldState = k_newState;
 
-
             base.Update();
         }
 
