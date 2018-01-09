@@ -28,7 +28,7 @@ namespace Sh.Framework.Screens
             you need to keep in mind splash screens only play once throughout the whole game anyway
             though I could work on a patch, this is something that doesn't really need fixing, not now anyway
             */
-                player.Play(splash);
+                 player.Play(splash);
         }
 
         public override void Update(GameTime gametime)

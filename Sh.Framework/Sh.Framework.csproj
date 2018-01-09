@@ -65,6 +65,7 @@
     <Compile Include="FileIO\xml.cs" />
     <Compile Include="Input\GamepadStroke.cs" />
     <Compile Include="Input\KeyboardStroke.cs" />
+    <Compile Include="Input\MouseStroke.cs" />
     <Compile Include="Input\utils.cs" />
     <Compile Include="Objects\Behaviours\BGravPlayerObject.cs" />
     <Compile Include="Objects\ClickableObject.cs" />

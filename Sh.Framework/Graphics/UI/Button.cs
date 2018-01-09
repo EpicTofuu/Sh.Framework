@@ -29,7 +29,7 @@ namespace Sh.Framework.Graphics.UI
         public Color buttonColorPressed = Color.DarkGray;
         public Color labelColor = Color.Black;
 
-        public bool focused;
+        public bool focused = true;
         //don't forget to set the rect value as this class inherits from clickable object
 
         //--------------------------------------------------------------
@@ -56,7 +56,7 @@ namespace Sh.Framework.Graphics.UI
         /// <param name = "focused"> is the button interactable?</param>
         public Button()
         {
-
+            
         }
 
         public override void Update()
@@ -65,7 +65,7 @@ namespace Sh.Framework.Graphics.UI
 
             if (focused)
             {
-                if (MouseTouching.Rect(mouse, rect))
+                if (MouseTouching.RectWithIn (rect))
                 {
                     buttonColor = buttonColorHover;
                 }

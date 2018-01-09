@@ -6,6 +6,7 @@ using Sh.Framework.Screens;
 using Sh.Framework.Objects;
 using Sh.Framework.Physics.Collisions;
 using Sh.Framework.Graphics.UI.Scrolling;
+using Sh.Framework.Input;
 
 namespace Tests.Head
 {
@@ -22,10 +23,15 @@ namespace Tests.Head
 
         ScrollManager scrollmanager;
 
+        MouseState oldState;
+        MouseState newState;
+
         public buttonpane(Texture2D otherpixel, SpriteFont otherfont, Game othergame)
         {
             scrollmanager = new ScrollManager();
             scrollmanager.container = new Rectangle(0, 0, 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
+            oldState = Mouse.GetState();
 
             font = otherfont;
             pixel = otherpixel;
@@ -44,6 +50,7 @@ namespace Tests.Head
             testcases.Add(new testcases.SplashScreenTests.SplashScreenTestCase(game));
             testcases.Add(new testcases.TooltipsTests.TooltipsTestCase(game));
             testcases.Add(new testcases.TextboxTests.TextboxTestCase(game));
+            testcases.Add(new testcases.DialogueBoxTests.DialogueBoxTestCase(game));
         }
 
         public override void LoadContent()
@@ -57,6 +64,8 @@ namespace Tests.Head
 
             int i = 0;
 
+            newState = Mouse.GetState();
+
             foreach (testcase t in testcases)
             {
                 Vector2 position = new Vector2(4, 55 * i + 45 + scrollmanager.offset.Y);
@@ -65,7 +74,7 @@ namespace Tests.Head
 
                 batch.DrawString(font, t.testcasename, new Vector2(buttonsize.X, buttonsize.Y), Color.White);
 
-                if (MouseTouching.RectWithIn(buttonsize) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                if (MouseTouching.RectWithIn(buttonsize) && MouseStroke.LeftButtonDown (oldState, newState))
                 {
                     ScreenManager.Instance.currentscreen = t;
                     ScreenManager.Instance.reloadscreen();
@@ -73,6 +82,8 @@ namespace Tests.Head
 
                 i++;
             }
+
+            oldState = newState;
 
             scrollmanager.Update();
 
