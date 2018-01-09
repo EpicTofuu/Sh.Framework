@@ -1,5 +1,5 @@
 # Sh.Framework
-A game framework designed to work alongside monogame
+A collection of game related libraries that run alongside monogame
 
 expect weekly stable releasese every Thursday.
 
