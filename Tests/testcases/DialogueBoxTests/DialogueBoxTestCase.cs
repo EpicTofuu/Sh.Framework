@@ -31,7 +31,7 @@ namespace Tests.testcases.DialogueBoxTests
             messagebox = new DialogueBox()
             {
                 Type = DialogueBox.type.message,
-                message = "no one likes u xd",
+                message = "this is a dialoguebox",
                 title = "facts",
                 font = game.Content.Load<SpriteFont>("font"),
                 TitleAlign = DialogueBox.Align.Middle,
