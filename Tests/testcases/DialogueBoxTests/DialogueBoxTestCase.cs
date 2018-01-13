@@ -13,6 +13,9 @@ namespace Tests.testcases.DialogueBoxTests
         button button_messagebox;
         DialogueBox messagebox;
 
+        button button_yesno;
+        DialogueBox yesno;
+
         public DialogueBoxTestCase(Game Game) : base (Game)
         {
             testcasename = "DialogueBoxes";

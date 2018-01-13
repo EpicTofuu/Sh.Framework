@@ -103,9 +103,9 @@ namespace Sh.Framework.Objects
                 {
                     Hcoll = false;
                 }
-
-                position = new Vector2(position.X += hsp, position.Y += vsp);
             }
+
+            position = new Vector2(position.X + hsp, position.Y + vsp);
 
             Dhsp = hsp;
             Dvsp = vsp;
