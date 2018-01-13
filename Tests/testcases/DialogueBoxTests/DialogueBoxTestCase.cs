@@ -31,6 +31,13 @@ namespace Tests.testcases.DialogueBoxTests
             };
             button_messagebox.LoadContent();
 
+            button_yesno = new button(game)
+            {
+                label = "button_yesno",
+                rect = new Rectangle(500, 300, 200, 50)
+            };
+            button_yesno.LoadContent();
+
             messagebox = new DialogueBox()
             {
                 Type = DialogueBox.type.message,
@@ -44,7 +51,7 @@ namespace Tests.testcases.DialogueBoxTests
                     buttonLeft = game.Content.Load<Texture2D>("button/left"),
                     buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
                     buttonRight = game.Content.Load<Texture2D>("button/right"),
-                    rect = new Rectangle (1366 / 2 - 400 / 2, 768 / 2 - 100 / 2, 400, 100),
+                    rect = new Rectangle(1366 / 2 - 400 / 2, 768 / 2 - 100 / 2, 400, 100),
                     color = Color.White
                 },
                 selectionButton = new Button()
@@ -53,10 +60,37 @@ namespace Tests.testcases.DialogueBoxTests
                     buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
                     buttonRight = game.Content.Load<Texture2D>("button/right"),
                     labelFont = game.Content.Load<SpriteFont>("font"),
-                    rect = new Rectangle (0, 0, 120, 20)
+                    rect = new Rectangle(0, 0, 120, 20)
                 },
             };
             messagebox.visible = false;
+
+            yesno = new DialogueBox()
+            {
+                Type = DialogueBox.type.yesno,
+                message = "would you like to throw an exception?",
+                title = "yes no",
+                font = game.Content.Load<SpriteFont>("font"),
+                TitleAlign = DialogueBox.Align.Middle,
+                MessageAlign = DialogueBox.Align.Left,
+                window = new Pane()
+                {
+                    buttonLeft = game.Content.Load<Texture2D>("button/left"),
+                    buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
+                    buttonRight = game.Content.Load<Texture2D>("button/right"),
+                    rect = new Rectangle(1366 / 2 - 400 / 2, 768 / 2 - 100 / 2, 400, 100),
+                    color = Color.White
+                },
+                selectionButton = new Button()
+                {
+                    buttonLeft = game.Content.Load<Texture2D>("button/left"),
+                    buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
+                    buttonRight = game.Content.Load<Texture2D>("button/right"),
+                    labelFont = game.Content.Load<SpriteFont>("font"),
+                    rect = new Rectangle(0, 0, 120, 20)
+                },
+            };
+            yesno.visible = false;
 
             base.LoadContent();
         }
@@ -66,10 +100,24 @@ namespace Tests.testcases.DialogueBoxTests
             button_messagebox.Update();
             messagebox.Update();
 
+            button_yesno.Update();
+            yesno.Update();
+
             if (button_messagebox.pressed)
             {
                 messagebox.visible = true;
                 button_messagebox.pressed = false;
+            }
+
+            if (button_yesno.pressed)
+            {
+                yesno.visible = true;
+                button_yesno.pressed = false;
+            }
+
+            if (yesno.outcome)
+            {
+                throw new System.Exception("hi there");
             }
 
             base.Update(gametime);
@@ -79,6 +127,10 @@ namespace Tests.testcases.DialogueBoxTests
         {
             button_messagebox.Draw(spritebatch);
             messagebox.Draw(spritebatch);
+
+            button_yesno.Draw(spritebatch);
+            yesno.Draw(spritebatch);
+
             base.Draw(spritebatch);
         }
     }

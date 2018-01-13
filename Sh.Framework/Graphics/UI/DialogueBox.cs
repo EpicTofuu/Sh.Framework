@@ -42,13 +42,15 @@ namespace Sh.Framework.Graphics.UI
         public int buttonYoffset = 5;
 
         public List<Keys> DismissKeys = new List<Keys>();
-        public string dismissal = "Okay";
+        public string dismissal = "cancel";
+        public string agreement = "yes";
+        public string decline = "no";
 
         public bool visible;
 
         KeyboardState oldState;
         KeyboardState newState;
-
+        
         public DialogueBox()
         {
             //to create custom keys or remove conflicting ones:
@@ -58,6 +60,8 @@ namespace Sh.Framework.Graphics.UI
             DismissKeys.Add(Keys.Space);
             DismissKeys.Add(Keys.Enter);
 
+            visible = true;
+            
             oldState = Keyboard.GetState();
         }
 
@@ -112,15 +116,66 @@ namespace Sh.Framework.Graphics.UI
                 //external forms
                 if (Type == type.message)
                 {
-                    selectionButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2) - (selectionButton.rect.Width / 2), window.rect.Y + window.rect.Height - selectionButton.rect.Height - buttonYoffset, selectionButton.rect.Width, selectionButton.rect.Height);
-                    selectionButton.label = dismissal;
-                    selectionButton.Update();
-                    selectionButton.Draw(batch);
+                    Button cancelButton = selectionButton;
 
-                    if (selectionButton.pressed)
+                    cancelButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2) - (cancelButton.rect.Width / 2), window.rect.Y + window.rect.Height - cancelButton.rect.Height - buttonYoffset, cancelButton.rect.Width, cancelButton.rect.Height);
+                    cancelButton.label = dismissal;
+                    cancelButton.Update();
+                    cancelButton.Draw(batch);
+
+                    if (cancelButton.pressed)
                     {
                         visible = false;
-                        selectionButton.pressed = false;
+                        cancelButton.pressed = false;
+                    }
+                }
+                else if (Type == type.yesno)
+                {
+                    Button noButton;
+                    Button yesButton;
+
+                    yesButton = new Button()
+                    {
+                        buttonLeft = selectionButton.buttonLeft,
+                        buttonRight = selectionButton.buttonRight,
+                        buttonMiddle = selectionButton.buttonMiddle,
+                        labelFont = selectionButton.labelFont,
+                        rect = selectionButton.rect
+                    };
+
+                    noButton = new Button()
+                    {
+                        buttonLeft = selectionButton.buttonLeft,
+                        buttonRight = selectionButton.buttonRight,
+                        buttonMiddle = selectionButton.buttonMiddle,
+                        labelFont = selectionButton.labelFont,
+                        rect = selectionButton.rect
+                    };
+
+                    yesButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2), window.rect.Y + window.rect.Height - yesButton.rect.Height - buttonYoffset, selectionButton.rect.Width, yesButton.rect.Height);
+                    noButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2) - selectionButton.rect.Width, window.rect.Y + window.rect.Height - noButton.rect.Height - buttonYoffset, noButton.rect.Width, noButton.rect.Height);
+
+                    yesButton.label = agreement;
+                    noButton.label = decline;
+
+                    yesButton.Update();
+                    noButton.Update();
+
+                    yesButton.Draw(batch);
+                    noButton.Draw(batch);
+
+                    if (yesButton.pressed)
+                    {
+                        outcome = true;
+                        yesButton.pressed = false;
+                        visible = false;
+                    }
+
+                    if (noButton.pressed)
+                    {
+                        outcome = false;
+                        noButton.pressed = false;
+                        visible = false;
                     }
                 }
                 else
