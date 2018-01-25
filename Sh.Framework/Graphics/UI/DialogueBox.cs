@@ -50,7 +50,10 @@ namespace Sh.Framework.Graphics.UI
 
         KeyboardState oldState;
         KeyboardState newState;
-        
+
+        Button noButton;
+        Button yesButton;
+
         public DialogueBox()
         {
             //to create custom keys or remove conflicting ones:
@@ -63,6 +66,59 @@ namespace Sh.Framework.Graphics.UI
             visible = true;
             
             oldState = Keyboard.GetState();
+        }
+
+        public override void LoadContent()
+        {
+            yesButton = new Button()
+            {
+                buttonLeft = selectionButton.buttonLeft,
+                buttonRight = selectionButton.buttonRight,
+                buttonMiddle = selectionButton.buttonMiddle,
+                labelFont = selectionButton.labelFont,
+                rect = selectionButton.rect
+            };
+
+            noButton = new Button()
+            {
+                buttonLeft = selectionButton.buttonLeft,
+                buttonRight = selectionButton.buttonRight,
+                buttonMiddle = selectionButton.buttonMiddle,
+                labelFont = selectionButton.labelFont,
+                rect = selectionButton.rect
+            };
+            base.LoadContent();
+        }
+
+        public override void Update()
+        {
+            if (Type == type.yesno)
+            {
+                yesButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2), window.rect.Y + window.rect.Height - selectionButton.rect.Height - buttonYoffset, selectionButton.rect.Width, yesButton.rect.Height);
+                noButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2) - selectionButton.rect.Width, window.rect.Y + window.rect.Height - selectionButton.rect.Height - buttonYoffset, noButton.rect.Width, noButton.rect.Height);
+
+                yesButton.label = agreement;
+                noButton.label = decline;
+
+                yesButton.Update();
+                noButton.Update();
+
+                if (yesButton.pressed)
+                {
+                    outcome = true;
+                    yesButton.pressed = false;
+                    visible = false;
+                }
+
+                if (noButton.pressed)
+                {
+                    outcome = false;
+                    noButton.pressed = false;
+                    visible = false;
+                }
+            }
+
+            base.Update();
         }
 
         public override void Draw(SpriteBatch batch)
@@ -131,52 +187,8 @@ namespace Sh.Framework.Graphics.UI
                 }
                 else if (Type == type.yesno)
                 {
-                    Button noButton;
-                    Button yesButton;
-
-                    yesButton = new Button()
-                    {
-                        buttonLeft = selectionButton.buttonLeft,
-                        buttonRight = selectionButton.buttonRight,
-                        buttonMiddle = selectionButton.buttonMiddle,
-                        labelFont = selectionButton.labelFont,
-                        rect = selectionButton.rect
-                    };
-
-                    noButton = new Button()
-                    {
-                        buttonLeft = selectionButton.buttonLeft,
-                        buttonRight = selectionButton.buttonRight,
-                        buttonMiddle = selectionButton.buttonMiddle,
-                        labelFont = selectionButton.labelFont,
-                        rect = selectionButton.rect
-                    };
-
-                    yesButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2), window.rect.Y + window.rect.Height - yesButton.rect.Height - buttonYoffset, selectionButton.rect.Width, yesButton.rect.Height);
-                    noButton.rect = new Rectangle(window.rect.X + (window.rect.Width / 2) - selectionButton.rect.Width, window.rect.Y + window.rect.Height - noButton.rect.Height - buttonYoffset, noButton.rect.Width, noButton.rect.Height);
-
-                    yesButton.label = agreement;
-                    noButton.label = decline;
-
-                    yesButton.Update();
-                    noButton.Update();
-
                     yesButton.Draw(batch);
                     noButton.Draw(batch);
-
-                    if (yesButton.pressed)
-                    {
-                        outcome = true;
-                        yesButton.pressed = false;
-                        visible = false;
-                    }
-
-                    if (noButton.pressed)
-                    {
-                        outcome = false;
-                        noButton.pressed = false;
-                        visible = false;
-                    }
                 }
                 else
                 {
@@ -189,7 +201,7 @@ namespace Sh.Framework.Graphics.UI
                 //dismissal keys
                 foreach (Keys k in DismissKeys)
                 {
-                    if (KeyboardStroke.KeyUp(oldState, newState, k))
+                    if (KeyboardStroke.KeyDown(oldState, newState, k))
                     {
                         visible = false;
                     }

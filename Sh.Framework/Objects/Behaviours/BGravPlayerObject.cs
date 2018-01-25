@@ -24,15 +24,7 @@ namespace Sh.Framework.Objects.Behaviours
         public float gravity = 2;
 
         public List<GameObject> solids = new List<GameObject>();
-        public Game game;
-
-        //debug variables
-
-        private float Dhsp;
-        private float Dvsp;
-
-        private bool Hcoll;
-        private bool Vcoll;
+        public Game game;        
 
         public float hsp, vsp;
 
@@ -88,38 +80,53 @@ namespace Sh.Framework.Objects.Behaviours
                     vsp = isJump * (-jumpspeed * 2);
                 }
 
-                Rectangle horCol = new Rectangle((int)(position.X + hsp), (int)position.Y, (int)texture.Width, (int)texture.Height);
-                Rectangle verCol = new Rectangle((int)position.X, (int)(position.Y + vsp), (int)texture.Width, (int)texture.Height);
+                Rectangle horCol = new Rectangle((int)(position.X + hsp), (int)position.Y, texture.Width, texture.Height);
+                Rectangle verCol = new Rectangle((int)position.X, (int)(position.Y + vsp), texture.Width, texture.Height);
 
-                //horizontal collision
-                if (collision.withGameObject(horCol, other))
+                if (collision.withGameObject(horCol, other))        //horizontal collision
                 {
-                    Hcoll = true;
-
-                    while (!collision.withGameObject(new Rectangle((int)(position.X + Math.Sign(hsp)), (int)position.Y, (int)texture.Width, (int)texture.Height), other))
+                    while (!collision.withGameObject(new Rectangle((int)(position.X + Math.Sign(hsp)), (int)position.Y, texture.Width, texture.Height), other))
+                    {
                         position.X += Math.Sign(hsp);
+                    }
 
                     hsp = 0;
                 }
-                else
-                {
-                    Hcoll = false;
-                }
 
-                //vertical collision
-                if (collision.withGameObject(verCol, other))
+                if (collision.withGameObject(verCol, other))   //vertical collision
                 {
-                    while (!collision.withGameObject(new Rectangle((int)position.X, (int)(position.Y + Math.Sign(vsp)), (int)texture.Width, (int)texture.Height), other))
-                        position.Y += Math.Sign(vsp);
+                    //differentiating between two different engines
+                    if (collision.withGameObject(new Rectangle((int)position.X, (int)position.Y - 64, (int)texture.Width + 64, (int)texture.Height), other))
+                    {
+                        //Close-case engine. Aims to move player object out of a block constantly
+                        //Less accurate but handles collisions with smaller heights
+                        isJump = 0;
+                        int i;
+
+                        if (Math.Sign(vsp) == -1)
+                        {
+                            i = -1;
+                        }
+                        else
+                        {
+                            i = 1;
+                        }
+
+                        position.Y += 1 * i;
+                    }
+                    else
+                    {
+                        //General-case engine. Aims to move player object out of a block systematically
+                        //More accurate but can only correctly handle taller heights
+                        while (!collision.withGameObject(new Rectangle((int)position.X, (int)(position.Y + Math.Sign(vsp)), (int)texture.Width, (int)texture.Height), other))
+                            position.Y += Math.Sign(vsp);
+                    }
 
                     vsp = 0;
                 }
             }
 
             position = new Vector2(position.X + hsp, position.Y + vsp);
-
-            Dhsp = hsp;
-            Dvsp = vsp;
         }
     }
 }

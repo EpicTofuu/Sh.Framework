@@ -22,6 +22,14 @@ namespace Sh.Framework.Graphics.UI
         public Rectangle rectangle;     //x and y are useless, just set to 0
         public Vector2 offset = new Vector2 (5, 5);
 
+        public enum cutType
+        {
+            block,
+            jump
+        }
+
+        public cutType cornerCutting = cutType.block;
+
         public PaneToMouse(Game Game)
         {
             game = Game;
@@ -48,18 +56,24 @@ namespace Sh.Framework.Graphics.UI
 
             int mX, mY;
 
-            if (mState.Position.X + pane.rect.Width + offset.X + 1 > screen.dim.X)     //get screen width
+            if (mState.Position.X + pane.rect.Width + offset.X + 1 > 1366)     //get screen width
             {
-                mX = (int)screen.dim.X - pane.rect.Width;
+                if (cornerCutting == cutType.block)
+                    mX = (int)1366 - pane.rect.Width;
+                else
+                    mX = mState.Position.X - (int)offset.X - pane.rect.Width;
             }
             else
             {
                 mX = mState.Position.X + (int)offset.X;
             }
 
-            if (mState.Position.Y + pane.rect.Height + offset.Y + 1 > screen.dim.Y)     //get screen height
+            if (mState.Position.Y + pane.rect.Height + offset.Y + 1 > 768)     //get screen height
             {
-                mY = (int)screen.dim.Y - pane.rect.Height;
+                if (cornerCutting == cutType.block)
+                    mY = (int)768 - pane.rect.Height;
+                else
+                    mY = mState.Position.Y - (int)offset.Y - pane.rect.Height;
             }
             else
             {

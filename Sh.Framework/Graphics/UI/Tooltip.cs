@@ -26,6 +26,8 @@ namespace Sh.Framework.Graphics.UI
         PaneToMouse ptm;
         SpriteFont Font;
 
+        public PaneToMouse.cutType CornerCutting;
+
         public Tooltip(Game Game)
         {
             game = Game;
@@ -43,7 +45,8 @@ namespace Sh.Framework.Graphics.UI
                 color = paneColor,
                 rectangle = new Rectangle(0, 0, (int)Font.MeasureString(label).X + (int)padding.X, (int)Font.MeasureString(label).Y + (int)padding.Y),
                 offset = this.offset,
-                alpha = this.alpha
+                alpha = this.alpha,
+                cornerCutting = CornerCutting
             };ptm.LoadContent();
 
             base.LoadContent();

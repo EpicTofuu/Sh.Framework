@@ -41,15 +41,9 @@ namespace Sh.Framework.Objects
 
         public override void Update()
         {
-            if (texture != null)
+            if (solid && texture != null)
             {
-                textureWidth = texture.Width;
-                textureHeight = texture.Height;
-            }
-
-            if (solid)
-            {
-                hitbox = new Rectangle((int)position.X, (int)position.Y, (int) textureWidth, (int) textureHeight);
+                hitbox = new Rectangle((int)position.X, (int)position.Y, (int) texture.Width, (int) texture.Height);
             }
         }
 

@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -45,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debug\FileLog.cs" />
     <Compile Include="Debug\DebugConsole.cs" />
     <Compile Include="FileIO\tiled.cs" />
     <Compile Include="FileIO\txt.cs" />
@@ -67,6 +71,7 @@
     <Compile Include="Input\KeyboardStroke.cs" />
     <Compile Include="Input\MouseStroke.cs" />
     <Compile Include="Input\utils.cs" />
+    <Compile Include="Maths\utils.cs" />
     <Compile Include="Objects\Behaviours\BGravPlayerObject.cs" />
     <Compile Include="Objects\ClickableObject.cs" />
     <Compile Include="Objects\DragableObject.cs" />
