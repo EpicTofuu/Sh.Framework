@@ -22,13 +22,30 @@ namespace Sh.Framework.Screens
         public override void LoadContent()
         {
             exitkey = Keys.Space;
+        }
 
+        public void Splash()
+        {
             /*
             I am fully aware that you can't play the video twice in the same run however
             you need to keep in mind splash screens only play once throughout the whole game anyway
             though I could work on a patch, this is something that doesn't really need fixing, not now anyway
             */
-                 player.Play(splash);
+
+            //I'm also pretty sure there's like a 1 in 15 chance the video will fail to load (that's just some monogame thing
+            //just restart application)
+
+            player.Play(splash);
+
+            /*
+            try
+            {
+            }
+            catch
+            {
+                System.Console.WriteLine("video failed to load");
+                throw new System.Exception();
+            }*/
         }
 
         public override void Update(GameTime gametime)
