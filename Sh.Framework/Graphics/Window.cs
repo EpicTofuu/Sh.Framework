@@ -44,7 +44,14 @@ namespace Sh.Framework.Graphics
         /// <returns></returns>
         public static float getMonitorWidth()
         {
-            return DisplayDevice.Default.Width;
+            try
+            {
+                return DisplayDevice.Default.Width;
+            }
+            catch
+            {
+                throw new System.Exception("method could not be called, check if you have OpenTK.dll referenced");
+            }
         }
 
         /// <summary>
@@ -53,7 +60,14 @@ namespace Sh.Framework.Graphics
         /// <returns></returns>
         public static float getMonitorHeight()
         {
-            return DisplayDevice.Default.Height;
+            try
+            {
+                return DisplayDevice.Default.Height;
+            }
+            catch
+            {
+                throw new System.Exception("method could not be called, check if you have OpenTK.dll referenced");
+            }
         }
     }
 }
