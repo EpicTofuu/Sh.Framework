@@ -18,7 +18,7 @@ namespace Tests.testcases.SplashScreenTests
         public override void LoadContent()
         {
             splash = game.Content.Load<Texture2D>("splashscreens/splash");
-            splashrect = new Rectangle(0, 0, 1366, 768);
+            splashrect = new Rectangle(0, 0, (int)Sh.Framework.Graphics.Window.getWidth(), (int)Sh.Framework.Graphics.Window.getHeight());
             splashColor = Color.White;
             time = 3 * 60;
             base.LoadContent();

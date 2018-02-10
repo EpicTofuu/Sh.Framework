@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Finished products\Sh.iTouhou - Spontaneous Black Hwan\-+ Sh.iTouhou - Spontaneous Black Hwan +-\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\..\..\AppData\Local\osulazer\app-2018.201.0\OpenTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,7 +55,7 @@
     <Compile Include="Debug\DebugConsole.cs" />
     <Compile Include="FileIO\tiled.cs" />
     <Compile Include="FileIO\txt.cs" />
-    <Compile Include="Graphics\screen.cs" />
+    <Compile Include="Graphics\Window.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Text.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
@@ -73,16 +76,21 @@
     <Compile Include="Input\utils.cs" />
     <Compile Include="Maths\utils.cs" />
     <Compile Include="Objects\Behaviours\BGravPlayerObject.cs" />
+    <Compile Include="Objects\Behaviours\BGravPlayerObject_2.cs" />
     <Compile Include="Objects\ClickableObject.cs" />
     <Compile Include="Objects\DragableObject.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Objects\GenericObject.cs" />
     <Compile Include="Objects\GravPlayerObject.cs" />
+    <Compile Include="Objects\Interfaces\IDynamic.cs" />
     <Compile Include="Objects\Interfaces\IGenericObject.cs" />
+    <Compile Include="Objects\Interfaces\IStationary.cs" />
     <Compile Include="Objects\PlayerObject.cs" />
     <Compile Include="Physics\Collisions\collision.cs" />
     <Compile Include="Physics\Collisions\MouseTouching.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\experimental\GameScreen.cs" />
+    <Compile Include="Screens\experimental\ScreenManager.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\SplashScreenImage.cs" />

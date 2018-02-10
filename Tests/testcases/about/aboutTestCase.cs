@@ -1,5 +1,5 @@
 ﻿using Tests.Head;
-using Sh.Framework.Screens;
+using Sh.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -32,7 +32,7 @@ namespace Tests.testcases.about
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(pixel, new Rectangle(0, 0, 1366, 768), Color.DarkSlateGray);
+            spritebatch.Draw(pixel, new Rectangle(0, 0, (int)(int)Sh.Framework.Graphics.Window.getWidth(), (int)Sh.Framework.Graphics.Window.getHeight()), Color.DarkSlateGray);
 
             spritebatch.DrawString(font, "About \n\n" +
                 "Welcome to the Sh.Framework testing interface, here you can test all the features Sh.Framework has to offer \n" +

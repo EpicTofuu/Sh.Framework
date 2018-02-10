@@ -8,9 +8,9 @@ using System.Collections.Generic;
 namespace Sh.Framework.Objects.Behaviours
 {
     /// <summary>
-    /// GravPlayerObject as an instiable type rather than an inheritable object
+    /// no
     /// </summary>
-    public class BGravPlayerObject : GenericObject
+    public class BGravPlayerObject_2 : GenericObject
     {
         public Vector2 position;
         public Texture2D texture;
@@ -20,7 +20,7 @@ namespace Sh.Framework.Objects.Behaviours
         public Keys moveLeft;
         public Keys moveRight;
         public float speed = 10;
-        public float jumpspeed = 20;
+        public float jumpspeed = 15;
         public float gravity = 2;
 
         public List<GameObject> solids = new List<GameObject>();
@@ -32,7 +32,7 @@ namespace Sh.Framework.Objects.Behaviours
 
         float rGravity;
 
-        public BGravPlayerObject()
+        public BGravPlayerObject_2()
         {
             vsp = 0;
             rGravity = gravity;
@@ -50,36 +50,33 @@ namespace Sh.Framework.Objects.Behaviours
             KeyboardState ks = Keyboard.GetState();
             int isJump, isLeft, isRight;
             int xdir;
-
             
-            if (ks.IsKeyDown(jump) || ks.IsKeyDown(moveLeft) || ks.IsKeyDown(moveRight))
-                moving = true;
-            else
-                moving = false;
-
             if (ks.IsKeyDown(jump))
-                   isJump = 1;
-            else
-                isJump = 0;
-
-            if (ks.IsKeyDown(moveLeft))
-                isLeft = 1;
-            else
-                isLeft = 0;
-
-            if (ks.IsKeyDown(moveRight))
-                isRight = 1;
-            else
-                isRight = 0;
-
-
-            xdir = -isLeft + isRight;
-            hsp = xdir * speed;
-
-            if (vsp < 10)
             {
-                vsp += gravity;
+                //jumpspeed += 0.2f;
+                isJump = 1;
             }
+            else
+            {
+                isJump = 0;
+                //jumpspeed = 10;
+            }
+
+            if (hsp < 14)
+            {
+                if (ks.IsKeyDown(moveLeft))
+                    hsp -= 2;
+
+                if (ks.IsKeyDown(moveRight))
+                    hsp += 2;
+                
+                if (vsp < 10)
+                {
+                    vsp += gravity;
+                }
+            }
+
+            hsp *= 0.9f;
 
             foreach (GameObject other in solids)
             {

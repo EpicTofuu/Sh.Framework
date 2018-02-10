@@ -68,6 +68,7 @@
     <Compile Include="testcases\SplashScreenTests\imageSplash.cs" />
     <Compile Include="testcases\SplashScreenTests\SplashScreenTestCase.cs" />
     <Compile Include="testcases\SplashScreenTests\videoSplash.cs" />
+    <Compile Include="testcases\SpookyStuff\gamescreen.cs" />
     <Compile Include="testcases\TextboxTests\TextboxTestCase.cs" />
     <Compile Include="testcases\TooltipsTests\TooltipsTestCase.cs" />
   </ItemGroup>

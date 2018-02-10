@@ -36,9 +36,9 @@ namespace Tests.testcases.TooltipsTests
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(pixel, new Rectangle(1366 - 1000, 0, 1000, 768), Color.Black * 0.75f);
+            spritebatch.Draw(pixel, new Rectangle((int)Sh.Framework.Graphics.Window.getWidth() - 1000, 0, 1000, (int)Sh.Framework.Graphics.Window.getHeight()), Color.Black * 0.75f);
 
-            if (MouseTouching.RectWithIn (new Rectangle (1366 - 1000, 0, 1000, 768)))
+            if (MouseTouching.RectWithIn (new Rectangle ((int)Sh.Framework.Graphics.Window.getWidth() - 1000, 0, 1000, (int)Sh.Framework.Graphics.Window.getHeight())))
                 tt.Draw(spritebatch);
 
             base.Draw(spritebatch);

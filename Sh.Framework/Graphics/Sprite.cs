@@ -1,13 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sh.Framework.Objects.Interfaces;
 
 namespace Sh.Framework.Graphics
 {
-    public class Sprite
+    public class Sprite : IStationary
     {
         public string texturename;
 
         public Color color;
+
+        public Rectangle rect;
 
         public Vector2 position;
 
@@ -17,7 +20,6 @@ namespace Sh.Framework.Graphics
 
         public Sprite()
         {
-
         }
 
         public virtual void LoadContent()
@@ -28,7 +30,14 @@ namespace Sh.Framework.Graphics
 
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, position, color);
+
+            rect = new Rectangle((int)position.X, (int)position.Y, (int)texture?.Width, (int)texture?.Height);
+            spritebatch.Draw(texture, rect, color);
+        }
+
+        public void UnloadContent()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

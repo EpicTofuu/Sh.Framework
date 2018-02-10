@@ -21,10 +21,9 @@ namespace Tests
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1366;
             graphics.PreferredBackBufferHeight = 768;
-            screen.dim = new Vector2(screen.getWidth(), screen.getHeight());
-
-            //the interface is borderline capable of handling irregular aspect ratios and resolutions, but just don't.
-            //Window.AllowUserResizing = true;
+            
+            Window.AllowUserResizing = true;
+            Window.Position = new Point((int)Sh.Framework.Graphics.Window.getMonitorWidth() / 2 - 1366 / 2, 20);
         }
 
         /// <summary>
@@ -40,6 +39,8 @@ namespace Tests
             ScreenManager.Instance.currentscreen = new testcases.about.aboutTestCase(this);
 
             IsMouseVisible = true;
+
+            Sh.Framework.Graphics.Window.GD = GraphicsDevice;
 
             base.Initialize();
         }
@@ -82,12 +83,12 @@ namespace Tests
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            screen.dim = new Vector2(screen.getWidth(), screen.getHeight());
 
             // TODO: Add your update logic here
             ScreenManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
+            
         }
 
         /// <summary>

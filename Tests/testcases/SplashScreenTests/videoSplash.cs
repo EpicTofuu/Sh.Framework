@@ -17,7 +17,7 @@ namespace Tests.testcases.SplashScreenTests
         {
             splash = game.Content.Load<Video>("splashscreens/splashvideo");
             player = new VideoPlayer();
-            splashrect = new Rectangle(0, 0, 1366, 768);
+            splashrect = new Rectangle(0, 0, (int)Sh.Framework.Graphics.Window.getWidth(), (int)Sh.Framework.Graphics.Window.getHeight());
             splashColor = Color.White;
             base.LoadContent();
         }

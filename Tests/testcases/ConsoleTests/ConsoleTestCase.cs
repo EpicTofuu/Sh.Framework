@@ -37,7 +37,7 @@ namespace Tests.testcases.ConsoleTests
 
             Texture2D pixel = game.Content.Load<Texture2D>(@"pixel");
 
-            dbconsole = new DebugConsole(pixel, useFont, new Rectangle (1366 - 800, 750, 800, 400), game);
+            dbconsole = new DebugConsole(pixel, useFont, new Rectangle ((int)Sh.Framework.Graphics.Window.getWidth() - 800, 750, 800, 400), game);
 
             commentConsole = new Button
             {
