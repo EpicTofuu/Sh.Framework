@@ -56,10 +56,10 @@ namespace Sh.Framework.Graphics.UI
 
             int mX, mY;
 
-            if (mState.Position.X + pane.rect.Width + offset.X + 1 > (int)Sh.Framework.Graphics.Window.getWidth())     //get screen width
+            if (mState.Position.X + pane.rect.Width + offset.X + 1 > (int)Sh.Framework.Graphics.ShWindow.getWidth())     //get screen width
             {
                 if (cornerCutting == cutType.block)
-                    mX = (int)(int)Sh.Framework.Graphics.Window.getWidth() - pane.rect.Width;
+                    mX = (int)(int)Sh.Framework.Graphics.ShWindow.getWidth() - pane.rect.Width;
                 else
                     mX = mState.Position.X - (int)offset.X - pane.rect.Width;
             }
@@ -68,10 +68,10 @@ namespace Sh.Framework.Graphics.UI
                 mX = mState.Position.X + (int)offset.X;
             }
 
-            if (mState.Position.Y + pane.rect.Height + offset.Y + 1 > (int)Sh.Framework.Graphics.Window.getHeight())     //get screen height
+            if (mState.Position.Y + pane.rect.Height + offset.Y + 1 > (int)Sh.Framework.Graphics.ShWindow.getHeight())     //get screen height
             {
                 if (cornerCutting == cutType.block)
-                    mY = (int)(int)Sh.Framework.Graphics.Window.getHeight() - pane.rect.Height;
+                    mY = (int)(int)Sh.Framework.Graphics.ShWindow.getHeight() - pane.rect.Height;
                 else
                     mY = mState.Position.Y - (int)offset.Y - pane.rect.Height;
             }

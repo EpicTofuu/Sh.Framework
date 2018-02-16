@@ -51,6 +51,7 @@ namespace Tests.Head
             testcases.Add(new testcases.TooltipsTests.TooltipsTestCase(game));
             testcases.Add(new testcases.TextboxTests.TextboxTestCase(game));
             testcases.Add(new testcases.DialogueBoxTests.DialogueBoxTestCase(game));
+            testcases.Add(new testcases.DrawingTests.DrawingTestCase(game));
         }
 
         public override void LoadContent()
@@ -72,7 +73,7 @@ namespace Tests.Head
                 buttonsize = new Rectangle((int)position.X, (int)position.Y, 150, 50);
                 batch.Draw(pixel, buttonsize, Color.DarkSlateGray);
 
-                batch.DrawString(font, t.testcasename, new Vector2(buttonsize.X, buttonsize.Y), Color.White);
+                batch.DrawString(font, t.testcasename ?? "<not specified>", new Vector2(buttonsize.X, buttonsize.Y), Color.White);
 
                 if (MouseTouching.RectWithIn(buttonsize) && MouseStroke.LeftButtonDown (oldState, newState))
                 {

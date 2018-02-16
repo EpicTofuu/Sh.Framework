@@ -3,10 +3,8 @@ using OpenTK;
 
 namespace Sh.Framework.Graphics
 {
-    public static class Window
+    public static class ShWindow
     {
-        public static GraphicsDevice GD;
-
         public enum anchor
         {
             TopLeft,
@@ -26,7 +24,7 @@ namespace Sh.Framework.Graphics
         /// <returns></returns>
         public static float getWidth()
         {
-            return GD.Viewport.Bounds.Width;
+            return Setup.GD.Viewport.Bounds.Width;
         }
 
         /// <summary>
@@ -35,7 +33,7 @@ namespace Sh.Framework.Graphics
         /// <returns></returns>
         public static float getHeight()
         {
-            return GD.Viewport.Bounds.Height;
+            return Setup.GD.Viewport.Bounds.Height;
         }
 
         /// <summary>

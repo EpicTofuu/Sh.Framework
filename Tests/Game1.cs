@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sh.Framework;
 using Sh.Framework.Screens;
 using Sh.Framework.Graphics;
 
@@ -23,7 +24,7 @@ namespace Tests
             graphics.PreferredBackBufferHeight = 768;
             
             Window.AllowUserResizing = true;
-            Window.Position = new Point((int)Sh.Framework.Graphics.Window.getMonitorWidth() / 2 - 1366 / 2, 20);
+            Window.Position = new Point((int)Sh.Framework.Graphics.ShWindow.getMonitorWidth() / 2 - 1366 / 2, 20);
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace Tests
 
             IsMouseVisible = true;
 
-            Sh.Framework.Graphics.Window.GD = GraphicsDevice;
+            Setup.GD = GraphicsDevice;
 
             base.Initialize();
         }

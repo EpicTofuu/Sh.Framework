@@ -29,10 +29,10 @@ namespace Tests.Head
 
         public override void Draw(SpriteBatch batch)
         {
-            batch.Draw(pixel, new Rectangle(0, 0, (int)(int)Sh.Framework.Graphics.Window.getWidth(), 40), Color.Gray);
+            batch.Draw(pixel, new Rectangle(0, 0, (int)(int)Sh.Framework.Graphics.ShWindow.getWidth(), 40), Color.Gray);
             batch.DrawString(font, "testcase: " + testcase, new Vector2(10, 10), Color.White);
 
-            batch.DrawString(font, DateTime.Now.ToString(), new Vector2(Window.getWidth() - font.MeasureString(DateTime.Now.ToString()).X - 10, 10), Color.White);
+            batch.DrawString(font, DateTime.Now.ToString(), new Vector2(ShWindow.getWidth() - font.MeasureString(DateTime.Now.ToString()).X - 10, 10), Color.White);
             base.Draw(batch);
         }
     }

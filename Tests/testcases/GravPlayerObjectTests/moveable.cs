@@ -27,7 +27,7 @@ namespace Tests.testcases.GravPlayerObjectTests
 
         public override void Update()
         {
-            if (position.Y > (int)Sh.Framework.Graphics.Window.getHeight())
+            if (position.Y > (int)Sh.Framework.Graphics.ShWindow.getHeight())
                 position = storepos;
 
             base.Update();

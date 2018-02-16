@@ -29,7 +29,7 @@ namespace Tests.testcases.IOTests
             Texture2D pixel = game.Content.Load<Texture2D>(@"pixel");
             SpriteFont font = game.Content.Load<SpriteFont>(@"font");
 
-            console = new DebugConsole(pixel, font, new Rectangle((int)Sh.Framework.Graphics.Window.getWidth() - 200, 750, 200, 400), game);
+            console = new DebugConsole(pixel, font, new Rectangle((int)Sh.Framework.Graphics.ShWindow.getWidth() - 200, 750, 200, 400), game);
 
             txt = new txtManager(console);
             xml = new xmlManager(console);

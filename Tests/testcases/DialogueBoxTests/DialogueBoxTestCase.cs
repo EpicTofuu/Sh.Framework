@@ -51,7 +51,7 @@ namespace Tests.testcases.DialogueBoxTests
                     buttonLeft = game.Content.Load<Texture2D>("button/left"),
                     buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
                     buttonRight = game.Content.Load<Texture2D>("button/right"),
-                    rect = new Rectangle((int)Sh.Framework.Graphics.Window.getWidth() / 2 - 400 / 2, (int)Sh.Framework.Graphics.Window.getHeight() / 2 - 100 / 2, 400, 100),
+                    rect = new Rectangle((int)Sh.Framework.Graphics.ShWindow.getWidth() / 2 - 400 / 2, (int)Sh.Framework.Graphics.ShWindow.getHeight() / 2 - 100 / 2, 400, 100),
                     color = Color.White
                 },
                 selectionButton = new Button()
@@ -78,7 +78,7 @@ namespace Tests.testcases.DialogueBoxTests
                     buttonLeft = game.Content.Load<Texture2D>("button/left"),
                     buttonMiddle = game.Content.Load<Texture2D>("button/middle"),
                     buttonRight = game.Content.Load<Texture2D>("button/right"),
-                    rect = new Rectangle((int)Sh.Framework.Graphics.Window.getWidth() / 2 - 400 / 2, (int)Sh.Framework.Graphics.Window.getHeight() / 2 - 100 / 2, 400, 100),
+                    rect = new Rectangle((int)Sh.Framework.Graphics.ShWindow.getWidth() / 2 - 400 / 2, (int)Sh.Framework.Graphics.ShWindow.getHeight() / 2 - 100 / 2, 400, 100),
                     color = Color.White
                 },
                 selectionButton = new Button()

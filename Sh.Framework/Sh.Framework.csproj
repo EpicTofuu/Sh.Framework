@@ -38,8 +38,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Finished products\Sh.iTouhou - Spontaneous Black Hwan\-+ Sh.iTouhou - Spontaneous Black Hwan +-\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\..\..\..\AppData\Local\osulazer\app-2018.201.0\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,9 +53,11 @@
   <ItemGroup>
     <Compile Include="Debug\FileLog.cs" />
     <Compile Include="Debug\DebugConsole.cs" />
+    <Compile Include="Drawing\draw.cs" />
+    <Compile Include="Drawing\Pixel.cs" />
     <Compile Include="FileIO\tiled.cs" />
     <Compile Include="FileIO\txt.cs" />
-    <Compile Include="Graphics\Window.cs" />
+    <Compile Include="Graphics\ShWindow.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Text.cs" />
     <Compile Include="Graphics\UI\Button.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Graphics\UI\Textbox.cs" />
     <Compile Include="Graphics\UI\Tooltip.cs" />
     <Compile Include="FileIO\xml.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Input\GamepadStroke.cs" />
     <Compile Include="Input\KeyboardStroke.cs" />
     <Compile Include="Input\MouseStroke.cs" />
@@ -96,6 +99,10 @@
     <Compile Include="Screens\SplashScreenImage.cs" />
     <Compile Include="Screens\SplashScreenVideo.cs" />
     <Compile Include="vnTools\TextManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

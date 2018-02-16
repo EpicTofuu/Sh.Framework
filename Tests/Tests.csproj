@@ -54,6 +54,7 @@
     <Compile Include="testcases\DialogueBoxTests\DialogueBoxTestCase.cs" />
     <Compile Include="testcases\DragableObjectTests\DragableObjectTestCase.cs" />
     <Compile Include="testcases\DragableObjectTests\Dragging.cs" />
+    <Compile Include="testcases\DrawingTests\DrawingTestCase.cs" />
     <Compile Include="testcases\GravPlayerObjectTests\GravPlayerObjectTestCase.cs" />
     <Compile Include="testcases\GravPlayerObjectTests\intrusiveSolid.cs" />
     <Compile Include="testcases\GravPlayerObjectTests\moveable.cs" />
