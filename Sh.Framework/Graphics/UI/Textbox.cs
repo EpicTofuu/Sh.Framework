@@ -20,7 +20,6 @@ namespace Sh.Framework.Graphics.UI
         public string dummyText;
         public SpriteFont font;
         public Game game;
-        public Texture2D IBeam;
         public Texture2D pixel;
         public float paddingX = 40;
         public bool resetable = false;
@@ -135,10 +134,7 @@ namespace Sh.Framework.Graphics.UI
 
             if (MouseTouching.RectWithIn(pane.rect))                        //if touching
             {
-                game.IsMouseVisible = false;
-
                 MouseState mouse = Mouse.GetState();
-                batch.Draw(IBeam, new Vector2(mouse.X, mouse.Y), Color.White);
 
                 useColor = focusColour;
 
@@ -151,7 +147,6 @@ namespace Sh.Framework.Graphics.UI
             }   
             else                                                            //if not touching
             {
-                game.IsMouseVisible = true;
                 useColor = fillColour;
 
                 if (m_newState.LeftButton == ButtonState.Pressed && m_oldState.LeftButton == ButtonState.Released)

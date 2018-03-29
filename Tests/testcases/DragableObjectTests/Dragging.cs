@@ -11,6 +11,7 @@ namespace Tests.testcases.DragableObjectTests
             texturename = "texture2";
             color = Color.White;
             position = new Vector2(300, 300);
+            scale = new Vector2(80, 80);
         }
     }
 }

@@ -32,7 +32,8 @@ namespace Sh.Framework.Graphics
 
         public virtual void Draw(SpriteBatch batch)
         {
-            batch.DrawString(useFont, text, position, color);
+            if (text != null)
+                batch.DrawString(useFont, text, position, color);
         }
     }
 }

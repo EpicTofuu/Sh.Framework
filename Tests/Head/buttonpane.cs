@@ -52,6 +52,7 @@ namespace Tests.Head
             testcases.Add(new testcases.TextboxTests.TextboxTestCase(game));
             testcases.Add(new testcases.DialogueBoxTests.DialogueBoxTestCase(game));
             testcases.Add(new testcases.DrawingTests.DrawingTestCase(game));
+            testcases.Add(new testcases.DropdownTests.DropdownTestCase(game));
         }
 
         public override void LoadContent()
@@ -61,6 +62,8 @@ namespace Tests.Head
 
         public override void Draw(SpriteBatch batch)
         {
+            game.Window.Title = string.Format("{0} - Sh.Framework", ScreenManager.Instance.currentscreen);
+
             batch.Draw(pixel, new Rectangle(0, 0, 160, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height), Color.DarkGray);
 
             int i = 0;

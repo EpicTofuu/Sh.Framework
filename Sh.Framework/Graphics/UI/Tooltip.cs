@@ -47,7 +47,8 @@ namespace Sh.Framework.Graphics.UI
                 offset = this.offset,
                 alpha = this.alpha,
                 cornerCutting = CornerCutting
-            };ptm.LoadContent();
+            };
+            ptm.LoadContent();
 
             base.LoadContent();
         }

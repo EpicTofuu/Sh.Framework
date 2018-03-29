@@ -63,6 +63,7 @@
     <Compile Include="Graphics\UI\Button.cs" />
     <Compile Include="Graphics\UI\Checkbox.cs" />
     <Compile Include="Graphics\UI\DialogueBox.cs" />
+    <Compile Include="Graphics\UI\Dropdown.cs" />
     <Compile Include="Graphics\UI\Layout\Divider.cs" />
     <Compile Include="Graphics\UI\Layout\Division.cs" />
     <Compile Include="Graphics\UI\Pane.cs" />
@@ -72,12 +73,13 @@
     <Compile Include="Graphics\UI\Textbox.cs" />
     <Compile Include="Graphics\UI\Tooltip.cs" />
     <Compile Include="FileIO\xml.cs" />
+    <Compile Include="Objects\GameObjectRect.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Input\GamepadStroke.cs" />
     <Compile Include="Input\KeyboardStroke.cs" />
     <Compile Include="Input\MouseStroke.cs" />
     <Compile Include="Input\utils.cs" />
-    <Compile Include="Maths\utils.cs" />
+    <Compile Include="Maths\MathUtils.cs" />
     <Compile Include="Objects\Behaviours\BGravPlayerObject.cs" />
     <Compile Include="Objects\Behaviours\BGravPlayerObject_2.cs" />
     <Compile Include="Objects\ClickableObject.cs" />
@@ -103,6 +105,9 @@
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IMPORTANT NOTICE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

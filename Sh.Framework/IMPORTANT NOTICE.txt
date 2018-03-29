@@ -1,0 +1,4 @@
+﻿very important:
+
+I am considering deprecating Sh.Framework in favour in working on another framework. Any framework issues regarding namespaces, classes etc will not be 
+adressed in favour of getting Sh.Framework in its most useable state and ditching it entirely to work on another framework.

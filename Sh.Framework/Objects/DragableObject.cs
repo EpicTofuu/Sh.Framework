@@ -22,6 +22,8 @@ namespace Sh.Framework.Objects
         public string texturename;
         public Color color;
         public Vector2 position;
+        public Vector2 scale;
+        private Rectangle rect;
 
         public bool hovering;
         public bool dragging;
@@ -29,7 +31,6 @@ namespace Sh.Framework.Objects
         public AxisLockOn lockOn;
 
         protected Game game0;
-        public Rectangle hitbox;
         public Texture2D texture;
 
         public DragableObject(Game othergame)
@@ -49,9 +50,7 @@ namespace Sh.Framework.Objects
         {
             MouseState mouse = Mouse.GetState();
 
-            hitbox = new Rectangle((int)position.X, (int)position.Y, (int)texture.Width, (int)texture.Height);
-
-            if (MouseTouching.Rect(mouse, hitbox))
+            if (MouseTouching.Rect(mouse, rect))
             {
                 hovering = true;
                 if (mouse.LeftButton == ButtonState.Pressed)
@@ -67,11 +66,13 @@ namespace Sh.Framework.Objects
                             break;
 
                         case AxisLockOn.none:
-                            position = new Vector2(mouse.Position.X - texture.Width / 2, mouse.Position.Y - texture.Height / 2);
+                            position.X = mouse.Position.X - texture.Width / 2;
+                            position.Y = mouse.Position.Y - texture.Height / 2;
                             break;
 
                         default:
-                            position = new Vector2(mouse.Position.X - texture.Width / 2, mouse.Position.Y - texture.Height / 2);
+                            position.X = mouse.Position.X;
+                            position.Y = mouse.Position.Y;
                             break;
 
                      //nice codebase ;)
@@ -88,9 +89,14 @@ namespace Sh.Framework.Objects
 
         public override void Draw(SpriteBatch batch)
         {
+            rect.X = (int)position.X;
+            rect.Y = (int)position.Y;
+            rect.Width = (int)scale.X;
+            rect.Height = (int)scale.Y;
+
             if (texture != null)
             {
-                batch.Draw(texture, position, color);
+                batch.Draw(texture, rect, color);
             }
         }
     }

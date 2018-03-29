@@ -93,6 +93,9 @@ namespace Sh.Framework.Graphics.UI
                 buttonRight = this.buttonRight
             }.Draw(batch);
 
+            if (label == null)
+                label = "";
+
             batch.DrawString(labelFont, label, new Vector2(
                 rect.X + rect.Width / 2 - labelFont.MeasureString (label).X / 2,
                 rect.Y + rect.Height / 2 - labelFont.MeasureString(label).Y / 2),

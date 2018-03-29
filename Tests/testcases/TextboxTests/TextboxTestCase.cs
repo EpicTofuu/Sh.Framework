@@ -31,7 +31,6 @@ namespace Tests.testcases.TextboxTests
                 font = game.Content.Load<SpriteFont>("font"),
                 paddingX = 10,
                 game = game,
-                IBeam = game.Content.Load<Texture2D>("IBeam"),
                 pixel = game.Content.Load<Texture2D>("pixel")
             }; name.LoadContent();
 
